@@ -1,0 +1,40 @@
+QTutorialHint {
+    background-color: #E0E0E0;  /* Light gray */
+    border: 3px solid #BDBDBD;  /* Medium gray border */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Increased shadow */
+    box-sizing: border-box;  /* Include border in element's dimensions */
+}
+
+QTutorialHint QLabel {
+    color: #333333;  /* Dark gray text */
+    font-size: 14px;
+    padding: 10px;
+}
+
+QTutorialHint QLabel#progress_label {
+    background-color: #F5F5F5;  /* Very light gray background */
+    color: #4A4A4A;  /* Darker gray text */
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 5px;
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+QTutorialHint QPushButton {
+    background-color: #9E9E9E;  /* Medium gray */
+    color: #FFFFFF;  /* White text */
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+QTutorialHint QPushButton:hover {
+    background-color: #757575;  /* Darker gray on hover */
+}
+
+QTutorialHint QPushButton:pressed {
+    background-color: #616161;  /* Even darker when pressed */
+}

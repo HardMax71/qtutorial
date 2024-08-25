@@ -1,0 +1,6 @@
+* {
+    background-color: #FFFACD;  /* Light yellow */
+    border: 1px solid #FF4500;  /* OrangeRed */
+    color: #8B0000;  /* Dark red */
+    border-radius: 4px;
+}
