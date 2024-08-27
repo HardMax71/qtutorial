@@ -98,6 +98,9 @@ qtutorial/
 │   ├── styles/
 │   │   ├── highlight.qss
 │   │   └── tutorial_hint.qss
+│   ├── icons/
+│   |   ├── back-button.png
+│   |   └── ...
 │   ├── init.py
 │   ├── hint.py
 │   ├── tutorial_manager.py
@@ -113,6 +116,7 @@ qtutorial/
   - `example.gif`: Demonstration of the tutorial system
 - `qtutorial/`: Core package of the tutorial system
   - `styles/`: QSS stylesheets for the tutorial components
+  - `icons/`: Icon resources
   - `__init__.py`: Package initializer
   - `hint.py`: Implements the tutorial hint widget
   - `tutorial_manager.py`: Manages the tutorial flow

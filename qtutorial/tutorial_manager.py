@@ -1,10 +1,9 @@
 from PySide6.QtCore import QTimer, QDir
 from PySide6.QtGui import QColor
-from PySide6.QtWidgets import QGraphicsDropShadowEffect
+from PySide6.QtWidgets import QGraphicsDropShadowEffect, QProgressBar
 
 from .hint import QTutorialHint
 from .utils import load_stylesheet
-
 
 class QTutorialManager:
     def __init__(self, parent, tutorial_steps, show_step_number=True):
@@ -19,6 +18,8 @@ class QTutorialManager:
         styles_path = QDir.current().absoluteFilePath("qtutorial/styles")
         QDir.addSearchPath("styles", styles_path)
 
+        icons_path = QDir.current().absoluteFilePath("qtutorial/icons")
+        QDir.addSearchPath("icons", icons_path)
 
     def start_tutorial(self):
         QTimer.singleShot(500, self.show_tutorial_step)
@@ -30,6 +31,7 @@ class QTutorialManager:
         if self.current_step < len(self.tutorial_steps):
             element, text = self.tutorial_steps[self.current_step]
 
+            # Reset the style of the previously highlighted element
             if self.current_step > 0:
                 prev_element = self.tutorial_steps[self.current_step - 1][0]
                 prev_element.setGraphicsEffect(None)
@@ -48,16 +50,29 @@ class QTutorialManager:
             self.current_hint = QTutorialHint(text, self.current_step, len(self.tutorial_steps), self.show_step_number,
                                               self.parent)
             self.current_hint.next_button.clicked.connect(self.next_tutorial_step)
+            self.current_hint.prev_button.clicked.connect(self.prev_tutorial_step)
             self.current_hint.stop_button.clicked.connect(self.end_tutorial)
             self.current_hint.set_target_element(element)
             self.current_hint.show()
 
     def next_tutorial_step(self):
-        self.current_step += 1
-        if self.current_step < len(self.tutorial_steps):
+        if self.current_step < len(self.tutorial_steps) - 1:
+            self.current_step += 1
             self.show_tutorial_step()
         else:
             self.end_tutorial()
+
+    def prev_tutorial_step(self):
+        if self.current_step > 0:
+            # Reset the style of the currently highlighted element
+            current_element = self.tutorial_steps[self.current_step][0]
+            current_element.setGraphicsEffect(None)
+            current_element.setStyleSheet("")
+
+            self.current_step -= 1
+
+            # Highlight the previous element
+            self.show_tutorial_step()
 
     def end_tutorial(self):
         for element, _ in self.tutorial_steps:
